@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 14, 2023 at 10:50 AM
+-- Generation Time: Jan 17, 2023 at 08:40 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -91,7 +91,38 @@ CREATE TABLE `assignment` (
 INSERT INTO `assignment` (`assignment_id`, `floc`, `fdatein`, `fdesc`, `teacher_id`, `class_id`, `fname`) VALUES
 (2, 'uploads/6843_File_Doc3.docx', '2013-10-11 01:24:32', 'fasfasf', 13, 36, 'Assignment number 1'),
 (3, 'uploads/3617_File_login.mdb', '2013-10-28 19:35:28', 'q', 9, 80, 'q'),
-(33, 'admin/uploads/9744_File_capstone.sql', '2023-01-13 13:43:14', 'Somee', 20, 187, 'Sample');
+(33, 'admin/uploads/9744_File_capstone.sql', '2023-01-13 13:43:14', 'Somee', 20, 187, 'Sample'),
+(34, 'admin/uploads/7160_File_attendance.sql', '2023-01-16 17:50:26', 'Examples', 21, 189, 'Something');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `attendance`
+--
+
+CREATE TABLE `attendance` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `section` varchar(255) NOT NULL,
+  `gender` varchar(255) NOT NULL,
+  `dateofat` varchar(255) NOT NULL,
+  `class_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `attendance`
+--
+
+INSERT INTO `attendance` (`id`, `name`, `section`, `gender`, `dateofat`, `class_id`) VALUES
+(1, 'roger', 'BSIT-2B', 'male', '2023-01-15', 189),
+(2, 'layla', 'BSIT-2B', 'female', '2023-01-14', 189),
+(3, 'CHIN', 'BSIT-2B', 'FEMALE', '2023-01-16', 189),
+(4, 'Sample Student', 'BSIT-2B', 'male', '2023-01-16', 187),
+(6, 'Sample Student', 'BSIT-1A', 'Male', '2023-01-16', 190),
+(7, 'Example Student', 'BSIT-2B', 'male', '2023-01-16', 191),
+(8, 'Example Student', 'BSIT-2B', 'male', '2023-01-17', 191),
+(9, 'Sample Student', 'BSIT-1A', 'Male', '2023-01-17', 190),
+(10, 'Sample Student', 'BSIT-1A', 'Male', '2023-01-18', 190);
 
 -- --------------------------------------------------------
 
@@ -131,7 +162,9 @@ CREATE TABLE `class_exam` (
 
 INSERT INTO `class_exam` (`class_exam_id`, `teacher_class_id`, `exam_time`, `exam_id`) VALUES
 (31, 187, 3900, 13),
-(32, 188, 3900, 13);
+(32, 188, 3900, 13),
+(33, 191, 1500, 13),
+(34, 190, 1500, 14);
 
 -- --------------------------------------------------------
 
@@ -152,7 +185,9 @@ CREATE TABLE `class_quiz` (
 
 INSERT INTO `class_quiz` (`class_quiz_id`, `teacher_class_id`, `quiz_time`, `quiz_id`) VALUES
 (22, 187, 3900, 10),
-(23, 188, 3900, 10);
+(23, 188, 3900, 10),
+(24, 191, 1500, 10),
+(25, 191, 3900, 11);
 
 -- --------------------------------------------------------
 
@@ -171,8 +206,7 @@ CREATE TABLE `class_subject_overview` (
 --
 
 INSERT INTO `class_subject_overview` (`class_subject_overview_id`, `teacher_class_id`, `content`) VALUES
-(1, 167, '<p>Chapter&nbsp; 1</p>\r\n\r\n<p>Cha</p>\r\n'),
-(2, 187, '<p>Something</p>\r\n');
+(1, 167, '<p>Chapter&nbsp; 1</p>\r\n\r\n<p>Cha</p>\r\n');
 
 -- --------------------------------------------------------
 
@@ -251,7 +285,8 @@ CREATE TABLE `exam` (
 --
 
 INSERT INTO `exam` (`exam_id`, `exam_title`, `exam_description`, `date_added`, `teacher_id`) VALUES
-(13, 'Sample', 'Exam 1', '2023-01-14 12:14:33', 20);
+(13, 'Sample', 'Exam 1', '2023-01-14 12:14:33', 20),
+(14, 'Examm 2', 'Sample description', '2023-01-16 18:06:26', 21);
 
 -- --------------------------------------------------------
 
@@ -274,19 +309,7 @@ CREATE TABLE `exam_question` (
 --
 
 INSERT INTO `exam_question` (`exam_question_id`, `exam_id`, `question_text`, `question_type_id`, `points`, `date_added`, `answer`) VALUES
-(33, 5, '<p>q</p>\r\n', 2, 0, '2014-01-17 04:15:03', 'False'),
-(34, 3, '<p>Php Stands for ?</p>\r\n', 1, 0, '2014-01-17 12:25:17', 'C'),
-(35, 3, '<p>Echo is a Php code that display the output.</p>\r\n', 2, 0, '2014-01-17 12:26:18', 'True'),
-(36, 6, '<p>sample</p>\r\n', 1, 0, '2020-12-21 10:05:09', 'A'),
-(37, 6, '<p>asdasd</p>\r\n', 2, 0, '2020-12-21 10:05:25', 'True'),
-(38, 6, '<p>sdsd</p>\r\n', 2, 0, '2020-12-21 10:05:35', 'False'),
-(39, 7, '<p>What is?</p>\r\n', 2, 0, '2023-01-13 13:46:56', 'True'),
-(40, 8, '<p>Sampleesss</p>\r\n', 2, 0, '2023-01-14 00:12:36', 'True'),
-(41, 9, '<p>What</p>\r\n', 2, 0, '2023-01-14 11:48:52', 'True'),
-(42, 10, '<p>Whatss???</p>\r\n', 2, 0, '2023-01-14 11:54:06', 'True'),
-(43, 11, '<p>Whatt??</p>\r\n', 2, 0, '2023-01-14 11:58:16', 'True'),
-(44, 12, '<p>What</p>\r\n', 2, 0, '2023-01-14 12:00:17', 'True'),
-(47, 13, '<p>Unknown</p>\r\n', 2, 0, '2023-01-14 17:47:40', 'True');
+(48, 13, '<p>Whaat else</p>\r\n', 2, 0, '2023-01-16 20:40:52', 'True');
 
 -- --------------------------------------------------------
 
@@ -311,6 +334,7 @@ CREATE TABLE `files` (
 
 INSERT INTO `files` (`file_id`, `floc`, `fdatein`, `fdesc`, `teacher_id`, `class_id`, `fname`, `uploaded_by`) VALUES
 (149, 'admin/uploads/7939_File_449E26DB.jpg', '2023-01-13 14:06:32', 'sas', 21, 189, 'sss', ''),
+(150, 'admin/uploads/7914_File_capstone.sql', '2023-01-14 18:22:46', 'sas', 21, 189, 'sss', ''),
 (148, 'admin/uploads/7914_File_capstone.sql', '2023-01-13 13:53:17', 'Something', 20, 188, 'Something', 'SampleTeacher'),
 (147, 'admin/uploads/7914_File_capstone.sql', '2023-01-13 13:53:17', 'Something', 20, 187, 'Something', 'SampleTeacher'),
 (146, 'admin/uploads/8764_File_capstone.sql', '2023-01-13 13:41:47', 'Unknown', 0, 187, 'Math', 'SampleStudent'),
@@ -420,7 +444,12 @@ INSERT INTO `notification` (`notification_id`, `teacher_class_id`, `notification
 (45, 187, 'Add Practice Quiz file', '2023-01-14 12:13:53', 'student_quiz_list.php'),
 (46, 188, 'Add Practice Quiz file', '2023-01-14 12:13:53', 'student_quiz_list.php'),
 (47, 187, 'Add Practice Exam file', '2023-01-14 12:14:51', 'student_exam_list.php'),
-(48, 188, 'Add Practice Exam file', '2023-01-14 12:14:51', 'student_exam_list.php');
+(48, 188, 'Add Practice Exam file', '2023-01-14 12:14:51', 'student_exam_list.php'),
+(49, 189, 'Add Assignment file name <b>Something</b>', '2023-01-16 17:50:26', 'assignment_student.php'),
+(50, 191, 'Add Practice Exam file', '2023-01-16 20:24:48', 'student_exam_list.php'),
+(51, 191, 'Add Practice Quiz file', '2023-01-16 20:34:26', 'student_quiz_list.php'),
+(52, 191, 'Add Practice Quiz file', '2023-01-16 20:44:39', 'student_quiz_list.php'),
+(53, 190, 'Add Practice Exam file', '2023-01-17 09:56:18', 'student_exam_list.php');
 
 -- --------------------------------------------------------
 
@@ -502,7 +531,8 @@ CREATE TABLE `quiz` (
 --
 
 INSERT INTO `quiz` (`quiz_id`, `quiz_title`, `quiz_description`, `date_added`, `teacher_id`) VALUES
-(10, 'exquiz', 'Quiz 1', '2023-01-14 12:13:30', 20);
+(10, 'exquiz', 'Quiz 1', '2023-01-14 12:13:30', 20),
+(11, '2quiz', 'Quiz 1', '2023-01-16 20:44:01', 20);
 
 -- --------------------------------------------------------
 
@@ -534,7 +564,8 @@ INSERT INTO `quiz_question` (`quiz_question_id`, `quiz_id`, `question_text`, `qu
 (39, 7, '<p>What is?</p>\r\n', 2, 0, '2023-01-13 13:46:56', 'True'),
 (40, 9, '<p>Whaaat!!???</p>\r\n', 1, 0, '2023-01-14 00:18:03', 'A'),
 (41, 9, '<p>Not&nbsp;</p>\r\n', 2, 0, '2023-01-14 00:39:34', 'True'),
-(42, 10, '<p>idk</p>\r\n', 2, 0, '2023-01-14 12:13:42', 'True');
+(42, 10, '<p>idk</p>\r\n', 2, 0, '2023-01-14 12:13:42', 'True'),
+(43, 11, '<p>Samp</p>\r\n', 2, 0, '2023-01-16 20:44:15', 'True');
 
 -- --------------------------------------------------------
 
@@ -576,7 +607,7 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`student_id`, `firstname`, `lastname`, `class_id`, `username`, `password`, `location`, `status`) VALUES
-(221, 'Example', 'Student', 23, '123456789', '', 'uploads/NO-IMAGE-AVAILABLE.jpg', 'Unregistered'),
+(221, 'Example', 'Student', 23, '123456789', '123456', 'uploads/NO-IMAGE-AVAILABLE.jpg', 'Registered'),
 (220, 'Sample', 'Student', 24, '12345678', '123456', 'uploads/NO-IMAGE-AVAILABLE.jpg', 'Registered');
 
 -- --------------------------------------------------------
@@ -595,6 +626,13 @@ CREATE TABLE `student_assignment` (
   `student_id` int(11) NOT NULL,
   `grade` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `student_assignment`
+--
+
+INSERT INTO `student_assignment` (`student_assignment_id`, `assignment_id`, `floc`, `assignment_fdatein`, `fdesc`, `fname`, `student_id`, `grade`) VALUES
+(2, 33, 'admin/uploads/5920_File_attendance.sql', '2023-01-16 17:37:42', 'Just sample', 'Assignment', 220, '');
 
 -- --------------------------------------------------------
 
@@ -630,7 +668,9 @@ CREATE TABLE `student_class_exam` (
 --
 
 INSERT INTO `student_class_exam` (`student_class_exam_id`, `class_exam_id`, `student_id`, `student_exam_time`, `grade`) VALUES
-(5, 31, 220, '3900', '');
+(5, 31, 220, '3900', ''),
+(6, 33, 221, '3600', '1 out of 1'),
+(7, 34, 220, '1500', '');
 
 -- --------------------------------------------------------
 
@@ -651,8 +691,11 @@ CREATE TABLE `student_class_quiz` (
 --
 
 INSERT INTO `student_class_quiz` (`student_class_quiz_id`, `class_quiz_id`, `student_id`, `student_quiz_time`, `grade`) VALUES
-(7, 22, 220, '3592', '1 out of 1'),
-(8, 0, 220, '3600', '0 out of 1');
+(7, 22, 220, '3586', '1 out of 1'),
+(8, 0, 220, '3586', '0 out of 1'),
+(9, 0, 221, '3581', '0 out of 1'),
+(10, 24, 221, '3581', '1 out of 1'),
+(11, 25, 221, '3581', '1 out of 1');
 
 -- --------------------------------------------------------
 
@@ -741,9 +784,8 @@ CREATE TABLE `teacher_class` (
 --
 
 INSERT INTO `teacher_class` (`teacher_class_id`, `teacher_id`, `class_id`, `subject_id`, `thumbnails`, `school_year`) VALUES
-(187, 20, 24, 43, 'admin/uploads/thumbnails.jpg', '2022-2023'),
-(188, 20, 23, 43, 'admin/uploads/thumbnails.jpg', '2022-2023'),
-(189, 21, 23, 43, 'admin/uploads/thumbnails.jpg', '2022-2023');
+(190, 21, 24, 43, 'admin/uploads/thumbnails.jpg', '2022-2023'),
+(191, 20, 23, 43, 'admin/uploads/thumbnails.jpg', '2022-2023');
 
 -- --------------------------------------------------------
 
@@ -777,9 +819,8 @@ CREATE TABLE `teacher_class_student` (
 --
 
 INSERT INTO `teacher_class_student` (`teacher_class_student_id`, `teacher_class_id`, `student_id`, `teacher_id`) VALUES
-(383, 187, 220, 20),
-(384, 188, 221, 20),
-(385, 189, 221, 21);
+(388, 190, 220, 21),
+(390, 191, 221, 20);
 
 -- --------------------------------------------------------
 
@@ -796,13 +837,6 @@ CREATE TABLE `teacher_notification` (
   `student_id` int(11) NOT NULL,
   `assignment_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Dumping data for table `teacher_notification`
---
-
-INSERT INTO `teacher_notification` (`teacher_notification_id`, `teacher_class_id`, `notification`, `date_of_notification`, `link`, `student_id`, `assignment_id`) VALUES
-(19, 187, 'Add Downloadable Materials file name <b>Math</b>', '2023-01-13 13:41:47', 'downloadable.php', 220, 0);
 
 -- --------------------------------------------------------
 
@@ -867,7 +901,8 @@ CREATE TABLE `user_log` (
 --
 
 INSERT INTO `user_log` (`user_log_id`, `username`, `login_date`, `logout_date`, `user_id`) VALUES
-(87, 'admin', '2023-01-13 13:11:12', '', 15);
+(87, 'admin', '2023-01-13 13:11:12', '', 15),
+(88, 'admin', '2023-01-17 10:19:24', '', 15);
 
 --
 -- Indexes for dumped tables
@@ -890,6 +925,12 @@ ALTER TABLE `answer`
 --
 ALTER TABLE `assignment`
   ADD PRIMARY KEY (`assignment_id`);
+
+--
+-- Indexes for table `attendance`
+--
+ALTER TABLE `attendance`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `class`
@@ -1115,7 +1156,13 @@ ALTER TABLE `answer`
 -- AUTO_INCREMENT for table `assignment`
 --
 ALTER TABLE `assignment`
-  MODIFY `assignment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `assignment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+
+--
+-- AUTO_INCREMENT for table `attendance`
+--
+ALTER TABLE `attendance`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `class`
@@ -1127,19 +1174,19 @@ ALTER TABLE `class`
 -- AUTO_INCREMENT for table `class_exam`
 --
 ALTER TABLE `class_exam`
-  MODIFY `class_exam_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `class_exam_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `class_quiz`
 --
 ALTER TABLE `class_quiz`
-  MODIFY `class_quiz_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `class_quiz_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `class_subject_overview`
 --
 ALTER TABLE `class_subject_overview`
-  MODIFY `class_subject_overview_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `class_subject_overview_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `content`
@@ -1163,19 +1210,19 @@ ALTER TABLE `event`
 -- AUTO_INCREMENT for table `exam`
 --
 ALTER TABLE `exam`
-  MODIFY `exam_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `exam_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `exam_question`
 --
 ALTER TABLE `exam_question`
-  MODIFY `exam_question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `exam_question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `files`
 --
 ALTER TABLE `files`
-  MODIFY `file_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=150;
+  MODIFY `file_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
 
 --
 -- AUTO_INCREMENT for table `message`
@@ -1193,7 +1240,7 @@ ALTER TABLE `message_sent`
 -- AUTO_INCREMENT for table `notification`
 --
 ALTER TABLE `notification`
-  MODIFY `notification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `notification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `notification_read`
@@ -1211,13 +1258,13 @@ ALTER TABLE `notification_read_teacher`
 -- AUTO_INCREMENT for table `quiz`
 --
 ALTER TABLE `quiz`
-  MODIFY `quiz_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `quiz_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `quiz_question`
 --
 ALTER TABLE `quiz_question`
-  MODIFY `quiz_question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `quiz_question_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `school_year`
@@ -1235,7 +1282,7 @@ ALTER TABLE `student`
 -- AUTO_INCREMENT for table `student_assignment`
 --
 ALTER TABLE `student_assignment`
-  MODIFY `student_assignment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `student_assignment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `student_backpack`
@@ -1247,13 +1294,13 @@ ALTER TABLE `student_backpack`
 -- AUTO_INCREMENT for table `student_class_exam`
 --
 ALTER TABLE `student_class_exam`
-  MODIFY `student_class_exam_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `student_class_exam_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `student_class_quiz`
 --
 ALTER TABLE `student_class_quiz`
-  MODIFY `student_class_quiz_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `student_class_quiz_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `subject`
@@ -1277,7 +1324,7 @@ ALTER TABLE `teacher_backpack`
 -- AUTO_INCREMENT for table `teacher_class`
 --
 ALTER TABLE `teacher_class`
-  MODIFY `teacher_class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=190;
+  MODIFY `teacher_class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=192;
 
 --
 -- AUTO_INCREMENT for table `teacher_class_announcements`
@@ -1289,13 +1336,13 @@ ALTER TABLE `teacher_class_announcements`
 -- AUTO_INCREMENT for table `teacher_class_student`
 --
 ALTER TABLE `teacher_class_student`
-  MODIFY `teacher_class_student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=386;
+  MODIFY `teacher_class_student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=391;
 
 --
 -- AUTO_INCREMENT for table `teacher_notification`
 --
 ALTER TABLE `teacher_notification`
-  MODIFY `teacher_notification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `teacher_notification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `teacher_shared`
@@ -1313,7 +1360,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `user_log`
 --
 ALTER TABLE `user_log`
-  MODIFY `user_log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+  MODIFY `user_log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
